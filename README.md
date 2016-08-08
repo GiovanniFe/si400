@@ -1,4 +1,5 @@
-Versionamento de projeto destinado a Disciplina SI400 do Curso de TADS.
+Versionamento de projeto destinado a Disciplina SI400 do Curso de TADS
+----------------------------------------------
 
 Tema: Pesquisa de locais no Brasil
 Objetivo: Auxiliar usuários a encontrarem locais e seus dados de endereços correspondentes, a partir de dados de entrada genéricos.
