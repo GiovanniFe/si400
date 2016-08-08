@@ -5,7 +5,8 @@ Objetivo: Auxiliar usuários a encontrarem locais e seus dados de endereços cor
 Tipo de consulta: Consultar dados de locais com base nas informações dadas pelo usuário.
 Fonte de dados: https://viacep.com.br/
 
-Colaboradores:
+Colaboradores
+----------------------------------------------
 Gabriel Brito Nascimento	
 RA: 167786	
 Email: britogabriel97@gmail.com 
