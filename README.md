@@ -1,10 +1,10 @@
 Versionamento de projeto destinado a Disciplina SI400 do Curso de TADS
 ----------------------------------------------
 
-Tema: Pesquisa de locais no Brasil
-Objetivo: Auxiliar usuários a encontrarem locais e seus dados de endereços correspondentes, a partir de dados de entrada genéricos.
-Tipo de consulta: Consultar dados de locais com base nas informações dadas pelo usuário.
-Fonte de dados: https://viacep.com.br/
+Tema : Emissões de Dióxido de Carbono por Setor
+Objetivo : Exibir dados sobre as emissões de dióxido de carbono por setor em diferentes países dos anos entre 1990 e 2013.
+Tipo de consulta : Consultar dados de emissões com base nos parâmetros informados pelo usuário.
+Fonte de dados : http://wdi.worldbank.org/table/3.10
 
 Colaboradores
 ----------------------------------------------
