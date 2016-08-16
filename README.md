@@ -5,6 +5,7 @@ Versionamento de projeto destinado a Disciplina SI400 do Curso de TADS
 Tema : Emissões de Dióxido de Carbono por Setor <br/>
 Objetivo : Exibir dados sobre as emissões de dióxido de carbono por setor em diferentes países dos anos entre 1990 e 2013. <br/>
 Tipo de consulta : Consultar dados de emissões com base nos parâmetros informados pelo usuário. <br/>
+Formato de disponibilização dos dados: XML. <br/>
 Fonte de dados : http://wdi.worldbank.org/table/3.10 <br/>
 
 Colaboradores
@@ -28,7 +29,7 @@ Git: https://github.com/mauzemaluko
 Exemplo de Consulta e Grafico
 --
 
-Consultar emissões de dioxido de carbono emitidas nos setores de transporte nos periodos de 1990 e 2013 na Argentina e nos Estados Unidos.
+Consultar emissões de dioxido de carbono nos setores de transporte nos periodos entre 1990 e 2013 na Argentina e nos Estados Unidos.
 
 ![Graph](/Images/graph.png?raw=true)
 
