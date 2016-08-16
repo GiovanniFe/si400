@@ -14,12 +14,12 @@ Exibir de forma agradável e informativa e comparar as emissões de dióxido de 
 
 Descrição
 --
-Nome -> Nome dos países
-Eletricidade e Produção de Calor -> Porcentagem de combustão gerada pela produção de eletricidade e calor.
-Indústria e Construção -> Porcentagem de combustão gerada pela indústria e construção.
-Prédios Residenciais e Serviços Públicos e Comerciais -> Porcentagem de combustão gerada pelo setor residencial e comercial.
-Transporte -> Porcentagem de combustão gerada pelo transporte.
-Outros Setores -> Porcentagem de combustão gerada por outros setores.
+Nome -> Nome dos países<br/>
+Eletricidade e Produção de Calor -> Porcentagem de combustão gerada pela produção de eletricidade e calor.<br/>
+Indústria e Construção -> Porcentagem de combustão gerada pela indústria e construção.<br/>
+Prédios Residenciais e Serviços Públicos e Comerciais -> Porcentagem de combustão gerada pelo setor residencial e comercial.<br/>
+Transporte -> Porcentagem de combustão gerada pelo transporte.<br/>
+Outros Setores -> Porcentagem de combustão gerada por outros setores.<br/>
 
 Fluxo de dados
 --
