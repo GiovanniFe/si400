@@ -34,10 +34,7 @@ public class MenuHandler {
         view.getBtnSair().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                try {
-                    new Emissions().load();
-                } catch (IOException io) {
-                }
+                System.exit(0);
             }
         });
     }
