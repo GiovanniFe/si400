@@ -29,7 +29,6 @@ public class MenuView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         menu = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
@@ -37,16 +36,6 @@ public class MenuView extends javax.swing.JFrame {
         btn2 = new javax.swing.JButton();
         btn3 = new javax.swing.JButton();
         btn4 = new javax.swing.JButton();
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/emissao-co2.jpg"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -56,7 +45,7 @@ public class MenuView extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         menu.setBackground(new java.awt.Color(255, 255, 255));
-        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/menu.PNG"))); // NOI18N
+        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/si400/resources/menu.PNG"))); // NOI18N
         menu.setBorderPainted(false);
         menu.setContentAreaFilled(false);
         menu.setFocusable(false);
@@ -115,10 +104,6 @@ public class MenuView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuActionPerformed
@@ -129,7 +114,6 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
     private javax.swing.JButton btnSair;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton menu;
     // End of variables declaration//GEN-END:variables

@@ -54,7 +54,7 @@ public class SplashView extends javax.swing.JFrame {
         jLabel3.setBounds(420, 270, 80, 20);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/emissao-co2.jpg"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/si400/resources/emissao-co2.jpg"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setFocusable(false);

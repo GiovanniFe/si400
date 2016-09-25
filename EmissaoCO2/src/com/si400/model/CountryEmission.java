@@ -1,20 +1,23 @@
 package com.si400.model;
 
+import java.util.Map;
+
 /**
  *
  * @author Giovanni
  */
 public class CountryEmission {
 
-    private String name;
-    private Double[] eletricityAndHeat;
-    private Double[] industryAndConstruction;
-    private Double[] buildingsAndCommercial;
-    private Double[] tranport;
-    private Double[] otherSector;
+    private Map<Integer, Double> eletricityAndHeat;
+    private Map<Integer, Double> industryAndConstruction;
+    private Map<Integer, Double> buildingsAndCommercial;
+    private Map<Integer, Double> tranport;
+    private Map<Integer, Double> otherSector;
 
-    public CountryEmission(String name, Double[] eletricityAndHeat, Double[] industryAndConstruction, Double[] buildingsAndCommercial, Double[] tranport, Double[] otherSector) {
-        this.name = name;
+    public CountryEmission() {
+    }
+
+    public CountryEmission(Map<Integer, Double> eletricityAndHeat, Map<Integer, Double> industryAndConstruction, Map<Integer, Double> buildingsAndCommercial, Map<Integer, Double> tranport, Map<Integer, Double> otherSector) {
         this.eletricityAndHeat = eletricityAndHeat;
         this.industryAndConstruction = industryAndConstruction;
         this.buildingsAndCommercial = buildingsAndCommercial;
@@ -22,51 +25,43 @@ public class CountryEmission {
         this.otherSector = otherSector;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double[] getEletricityAndHeat() {
+    public Map<Integer, Double> getEletricityAndHeat() {
         return eletricityAndHeat;
     }
 
-    public void setEletricityAndHeat(Double[] eletricityAndHeat) {
+    public void setEletricityAndHeat(Map<Integer, Double> eletricityAndHeat) {
         this.eletricityAndHeat = eletricityAndHeat;
     }
 
-    public Double[] getIndustryAndConstruction() {
+    public Map<Integer, Double> getIndustryAndConstruction() {
         return industryAndConstruction;
     }
 
-    public void setIndustryAndConstruction(Double[] industryAndConstruction) {
+    public void setIndustryAndConstruction(Map<Integer, Double> industryAndConstruction) {
         this.industryAndConstruction = industryAndConstruction;
     }
 
-    public Double[] getBuildingsAndCommercial() {
+    public Map<Integer, Double> getBuildingsAndCommercial() {
         return buildingsAndCommercial;
     }
 
-    public void setBuildingsAndCommercial(Double[] buildingsAndCommercial) {
+    public void setBuildingsAndCommercial(Map<Integer, Double> buildingsAndCommercial) {
         this.buildingsAndCommercial = buildingsAndCommercial;
     }
 
-    public Double[] getTranport() {
+    public Map<Integer, Double> getTranport() {
         return tranport;
     }
 
-    public void setTranport(Double[] tranport) {
+    public void setTranport(Map<Integer, Double> tranport) {
         this.tranport = tranport;
     }
 
-    public Double[] getOtherSector() {
+    public Map<Integer, Double> getOtherSector() {
         return otherSector;
     }
 
-    public void setOtherSector(Double[] otherSector) {
+    public void setOtherSector(Map<Integer, Double> otherSector) {
         this.otherSector = otherSector;
     }
 
