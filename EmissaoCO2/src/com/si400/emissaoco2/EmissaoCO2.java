@@ -14,6 +14,5 @@ public class EmissaoCO2 {
      */
     public static void main(String[] args) {
         new SplashHandler(new SplashView());
-//        teste
     }
 }
