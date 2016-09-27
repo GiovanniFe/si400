@@ -1,7 +1,8 @@
 package com.si400.emissaoco2;
 
-import com.si400.handler.SplashHandler;
-import com.si400.view.SplashView;
+import com.si400.handler.DataFilterHandler;
+import com.si400.model.Emissions;
+import com.si400.view.DataFilterView;
 
 /**
  *
@@ -13,6 +14,11 @@ public class EmissaoCO2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new SplashHandler(new SplashView());
+        try {
+            new DataFilterHandler(new DataFilterView(), new Emissions());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+//        new SplashHandler(new SplashView());
     }
 }

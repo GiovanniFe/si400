@@ -11,17 +11,17 @@ public class CountryEmission {
     private Map<Integer, Double> eletricityAndHeat;
     private Map<Integer, Double> industryAndConstruction;
     private Map<Integer, Double> buildingsAndCommercial;
-    private Map<Integer, Double> tranport;
+    private Map<Integer, Double> transport;
     private Map<Integer, Double> otherSector;
 
     public CountryEmission() {
     }
 
-    public CountryEmission(Map<Integer, Double> eletricityAndHeat, Map<Integer, Double> industryAndConstruction, Map<Integer, Double> buildingsAndCommercial, Map<Integer, Double> tranport, Map<Integer, Double> otherSector) {
+    public CountryEmission(Map<Integer, Double> eletricityAndHeat, Map<Integer, Double> industryAndConstruction, Map<Integer, Double> buildingsAndCommercial, Map<Integer, Double> transport, Map<Integer, Double> otherSector) {
         this.eletricityAndHeat = eletricityAndHeat;
         this.industryAndConstruction = industryAndConstruction;
         this.buildingsAndCommercial = buildingsAndCommercial;
-        this.tranport = tranport;
+        this.transport = transport;
         this.otherSector = otherSector;
     }
 
@@ -49,12 +49,12 @@ public class CountryEmission {
         this.buildingsAndCommercial = buildingsAndCommercial;
     }
 
-    public Map<Integer, Double> getTranport() {
-        return tranport;
+    public Map<Integer, Double> getTransport() {
+        return transport;
     }
 
-    public void setTranport(Map<Integer, Double> tranport) {
-        this.tranport = tranport;
+    public void setTransport(Map<Integer, Double> tranport) {
+        this.transport = tranport;
     }
 
     public Map<Integer, Double> getOtherSector() {

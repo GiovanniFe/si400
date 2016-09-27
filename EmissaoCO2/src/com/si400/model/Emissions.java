@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -33,13 +34,11 @@ public class Emissions {
     }
 
     public void load() throws IOException {
-        boolean isFirst = true;
         BufferedInputStream in = null;
         FileOutputStream fout = null;
         try {
-            in = new BufferedInputStream(new URL("http://databank.worldbank.org/data/AjaxDownload/FileDownloadHandler.ashx?filename=ed012a5f-4eb5-40ba-9cfb-4edd8ee92bc4.zip&filetype=CSV&language=en&displayfile=Data_Extract_From_World_Development_Indicators.zip").openStream());
-            fout = new FileOutputStream("C:\\Users\\Giovanni\\Documents\\teste.zip");
-
+            in = new BufferedInputStream(new URL(Strings.getUrl()).openStream());
+            fout = new FileOutputStream(Strings.getZipPath());
             final byte data[] = new byte[1024];
             int count;
             while ((count = in.read(data, 0, 1024)) != -1) {
@@ -54,50 +53,48 @@ public class Emissions {
             }
         }
 
-        new Unzip().unzip("C:\\Users\\Giovanni\\Documents\\teste.zip", "C:\\Users\\Giovanni\\Documents\\File");
+        new Unzip().unzip(Strings.getZipPath(), Strings.getUnzipPath());
 
-        CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(new File("C:\\Users\\Giovanni\\Documents\\File\\ed012a5f-4eb5-40ba-9cfb-4edd8ee92bc4_Data.csv"))), ',');
-        String[] line;
-        while ((line = reader.readNext()) != null) {
-            if (isFirst) {
-                isFirst = false;
+        CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(new File(Strings.getCsvPath()))), ',');
+        String[] row;
+        while ((row = reader.readNext()) != null) {
+            if (row[1].split(Pattern.quote(".")).length != 4) {
                 continue;
             }
 
             CountryEmission ce;
 
-            if ((ce = emissions.get(line[2])) == null) {
+            if ((ce = emissions.get(row[2])) == null) {
                 ce = new CountryEmission();
                 ce.setBuildingsAndCommercial(new HashMap<>());
                 ce.setEletricityAndHeat(new HashMap<>());
                 ce.setIndustryAndConstruction(new HashMap<>());
                 ce.setOtherSector(new HashMap<>());
-                ce.setTranport(new HashMap<>());
+                ce.setTransport(new HashMap<>());
             }
 
-            switch (line[1].substring(7, 11)) {
+            switch (row[1].substring(7, 11)) {
                 case "BLDG":
-                    setYears(line, ce.getBuildingsAndCommercial());
+                    setYears(row, ce.getBuildingsAndCommercial());
                     break;
                 case "ETOT":
-                    setYears(line, ce.getEletricityAndHeat());
+                    setYears(row, ce.getEletricityAndHeat());
                     break;
-                case "MANT":
-                    setYears(line, ce.getIndustryAndConstruction());
+                case "MANF":
+                    setYears(row, ce.getIndustryAndConstruction());
                     break;
                 case "OTHX":
-                    setYears(line, ce.getOtherSector());
+                    setYears(row, ce.getOtherSector());
                     break;
                 case "TRAN":
-                    setYears(line, ce.getTranport());
+                    setYears(row, ce.getTransport());
                     break;
                 default:
                     break;
             }
 
-            emissions.put(line[2], ce);
+            emissions.put(row[2], ce);
         }
-        System.out.print("bla");
     }
 
     private void setYears(String[] line, Map<Integer, Double> ce) {
