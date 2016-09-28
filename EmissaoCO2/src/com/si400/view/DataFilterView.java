@@ -32,12 +32,12 @@ public class DataFilterView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnSair = new javax.swing.JButton();
-        lbPais = new javax.swing.JLabel();
-        lbAno = new javax.swing.JLabel();
-        lbSetor = new javax.swing.JLabel();
-        cbAno = new javax.swing.JComboBox<>();
-        cbSetor = new javax.swing.JComboBox<>();
-        cbPais = new javax.swing.JComboBox<>();
+        lbCountry = new javax.swing.JLabel();
+        lbYear = new javax.swing.JLabel();
+        lbSector = new javax.swing.JLabel();
+        cbYear = new javax.swing.JComboBox<>();
+        cbSector = new javax.swing.JComboBox<>();
+        cbCountry = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -54,29 +54,29 @@ public class DataFilterView extends javax.swing.JFrame {
         jPanel1.add(btnSair);
         btnSair.setBounds(520, 470, 190, 50);
 
-        lbPais.setText("País");
-        jPanel1.add(lbPais);
-        lbPais.setBounds(20, 30, 70, 17);
+        lbCountry.setText("Country");
+        jPanel1.add(lbCountry);
+        lbCountry.setBounds(20, 30, 70, 17);
 
-        lbAno.setText("Ano");
-        jPanel1.add(lbAno);
-        lbAno.setBounds(20, 80, 60, 17);
+        lbYear.setText("Year");
+        jPanel1.add(lbYear);
+        lbYear.setBounds(20, 130, 60, 17);
 
-        lbSetor.setText("Setor");
-        jPanel1.add(lbSetor);
-        lbSetor.setBounds(20, 130, 70, 17);
+        lbSector.setText("Sector");
+        jPanel1.add(lbSector);
+        lbSector.setBounds(20, 80, 70, 17);
 
-        cbAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbAno);
-        cbAno.setBounds(130, 80, 110, 27);
+        cbYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbYear);
+        cbYear.setBounds(130, 130, 110, 27);
 
-        cbSetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbSetor);
-        cbSetor.setBounds(130, 130, 350, 27);
+        cbSector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbSector);
+        cbSector.setBounds(130, 80, 350, 27);
 
-        cbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbPais);
-        cbPais.setBounds(130, 30, 160, 27);
+        cbCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbCountry);
+        cbCountry.setBounds(130, 30, 160, 27);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 740, 610);
@@ -87,27 +87,27 @@ public class DataFilterView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSair;
-    private javax.swing.JComboBox<String> cbAno;
-    private javax.swing.JComboBox<String> cbPais;
-    private javax.swing.JComboBox<String> cbSetor;
+    private javax.swing.JComboBox<String> cbCountry;
+    private javax.swing.JComboBox<String> cbSector;
+    private javax.swing.JComboBox<String> cbYear;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbAno;
-    private javax.swing.JLabel lbPais;
-    private javax.swing.JLabel lbSetor;
+    private javax.swing.JLabel lbCountry;
+    private javax.swing.JLabel lbSector;
+    private javax.swing.JLabel lbYear;
     // End of variables declaration//GEN-END:variables
     public JButton getBtnSair() {
         return btnSair;
     }
 
-    public JComboBox<String> getCbAno() {
-        return cbAno;
+    public JComboBox<String> getCbYear() {
+        return cbYear;
     }
 
-    public JComboBox<String> getCbPais() {
-        return cbPais;
+    public JComboBox<String> getCbCountry() {
+        return cbCountry;
     }
 
-    public JComboBox<String> getCbSetor() {
-        return cbSetor;
+    public JComboBox<String> getCbSector() {
+        return cbSector;
     }
 }
