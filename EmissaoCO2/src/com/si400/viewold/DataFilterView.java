@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.si400.view.swing;
+package com.si400.viewold;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
