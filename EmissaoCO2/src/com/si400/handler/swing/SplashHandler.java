@@ -1,7 +1,7 @@
-package com.si400.handler;
+package com.si400.handler.swing;
 
-import com.si400.view.MenuView;
-import com.si400.view.SplashView;
+import com.si400.view.swing.MenuView;
+import com.si400.view.swing.SplashView;
 import static java.lang.Thread.sleep;
 
 /**

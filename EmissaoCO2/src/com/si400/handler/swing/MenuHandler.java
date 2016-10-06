@@ -1,6 +1,6 @@
-package com.si400.handler;
+package com.si400.handler.swing;
 
-import com.si400.view.MenuView;
+import com.si400.view.swing.MenuView;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;

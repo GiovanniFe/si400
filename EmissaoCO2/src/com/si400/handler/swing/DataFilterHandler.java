@@ -1,9 +1,9 @@
-package com.si400.handler;
+package com.si400.handler.swing;
 
 import com.si400.enums.SectorEnum;
 import com.si400.model.CountryEmission;
 import com.si400.model.Emissions;
-import com.si400.view.DataFilterView;
+import com.si400.view.swing.DataFilterView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.si400.view;
+package com.si400.view.swing;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -56,27 +56,27 @@ public class DataFilterView extends javax.swing.JFrame {
 
         lbCountry.setText("Country");
         jPanel1.add(lbCountry);
-        lbCountry.setBounds(20, 30, 70, 17);
+        lbCountry.setBounds(20, 30, 70, 16);
 
         lbYear.setText("Year");
         jPanel1.add(lbYear);
-        lbYear.setBounds(20, 130, 60, 17);
+        lbYear.setBounds(20, 130, 60, 16);
 
         lbSector.setText("Sector");
         jPanel1.add(lbSector);
-        lbSector.setBounds(20, 80, 70, 17);
+        lbSector.setBounds(20, 80, 70, 16);
 
         cbYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(cbYear);
-        cbYear.setBounds(130, 130, 110, 27);
+        cbYear.setBounds(130, 130, 110, 26);
 
         cbSector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(cbSector);
-        cbSector.setBounds(130, 80, 350, 27);
+        cbSector.setBounds(130, 80, 350, 26);
 
         cbCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(cbCountry);
-        cbCountry.setBounds(130, 30, 160, 27);
+        cbCountry.setBounds(130, 30, 160, 26);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 740, 610);

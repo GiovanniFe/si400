@@ -1,8 +1,8 @@
 package com.si400.emissaoco2;
 
-import com.si400.handler.DataFilterHandler;
+import com.si400.handler.swing.DataFilterHandler;
 import com.si400.model.Emissions;
-import com.si400.view.DataFilterView;
+import com.si400.view.swing.DataFilterView;
 
 /**
  *
