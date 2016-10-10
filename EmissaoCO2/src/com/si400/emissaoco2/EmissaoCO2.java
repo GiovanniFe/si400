@@ -14,7 +14,7 @@ public class EmissaoCO2 {
     public static void main(String[] args) {
         try {
 //            new DataFilterHandler(new DataFilterView(), new Emissions());
-//            new SplashView().display();
+            new SplashView().display();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -1,9 +1,8 @@
-package com.si400.handlerold;
+package com.si400.handler;
 
 import com.si400.enums.SectorEnum;
 import com.si400.model.CountryEmission;
 import com.si400.model.Emissions;
-import com.si400.viewold.DataFilterView;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
@@ -11,56 +10,53 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.scene.control.ChoiceBox;
 import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author giovanni
  */
-public class DataFilterHandler {
+public class MenuOneHandler {
 
-    private final DataFilterView view;
     private Emissions emissions;
 
-    public DataFilterHandler(DataFilterView v, Emissions e) {
-        view = v;
-        emissions = e;
+    public MenuOneHandler() {
+        emissions = new Emissions();
         try {
             emissions.load();
-        } catch (IOException err) {
-            err.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        setCountryModel();
-        setSectorModel();
-        addEvents();
-        view.setVisible(true);
     }
 
-    private void setCountryModel() {
-        List countryList = new ArrayList<>();
+    public void setCountryModel(ChoiceBox<String> cb) {
+        List<String> countryList = new ArrayList<>();
         for (String key : emissions.getEmissions().keySet()) {
             countryList.add(key);
         }
         java.util.Collections.sort(countryList);
-        view.getCbCountry().setModel(new DefaultComboBoxModel(countryList.toArray()));
+        cb.getItems().addAll(countryList);
+        cb.setValue(countryList.get(0));
     }
 
-    private void setSectorModel() {
-        List sectorList = new ArrayList<>();
+    public void setSectorModel(ChoiceBox<SectorEnum> cb) {
+        List<SectorEnum> sectorList = new ArrayList<>();
         sectorList.add(SectorEnum.BLDG);
         sectorList.add(SectorEnum.ETOT);
         sectorList.add(SectorEnum.MANF);
         sectorList.add(SectorEnum.OTHX);
         sectorList.add(SectorEnum.TRAN);
         java.util.Collections.sort(sectorList);
-        view.getCbSector().setModel(new DefaultComboBoxModel(sectorList.toArray()));
+        cb.getItems().addAll(sectorList);
+        cb.setValue(sectorList.get(0));        
     }
 
-    private void setYearsModel() {
+    private void setYearsModel(ChoiceBox<String> cbCountry, ChoiceBox<SectorEnum> cbSector, ChoiceBox<String> cbYear) {
         List yearList = new ArrayList<>();
         Map<Integer, Double> yearsMap = new HashMap<>();
-        CountryEmission ce = emissions.getEmissions().get((String) view.getCbCountry().getSelectedItem());
-        switch ((SectorEnum) view.getCbSector().getSelectedItem()) {
+        CountryEmission ce = emissions.getEmissions().get(cbCountry.getValue());
+        switch ((SectorEnum) cbSector.getValue()) {
             case BLDG:
                 yearsMap = ce.getBuildingsAndCommercial();
                 break;
@@ -86,23 +82,22 @@ public class DataFilterHandler {
             }
         }
         java.util.Collections.sort(yearList);
-        view.getCbYear().setModel(new DefaultComboBoxModel(yearList.toArray()));
+        cbYear.getItems().addAll(yearList);
     }
 
-    private void addEvents() {
-        view.getCbSector().addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                setYearsModel();
-            }
-        });
-
-        view.getCbCountry().addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                setYearsModel();
-            }
-        });
-    }
-
+//    private void addEvents() {
+//        view.getCbSector().addItemListener(new ItemListener() {
+//            @Override
+//            public void itemStateChanged(ItemEvent e) {
+//                setYearsModel();
+//            }
+//        });
+//
+//        view.getCbCountry().addItemListener(new ItemListener() {
+//            @Override
+//            public void itemStateChanged(ItemEvent e) {
+//                setYearsModel();
+//            }
+//        });
+//    }
 }
