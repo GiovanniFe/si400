@@ -4,7 +4,6 @@ import com.si400.enums.SectorEnum;
 import com.si400.handler.MenuOneHandler;
 import com.si400.model.Utils;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -12,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 /**
  *
@@ -61,7 +59,7 @@ public class MenuView1 {
         GridPane.setHalignment(btn, HPos.RIGHT);
         layoutLeft = Utils.getGpLeftLayout(Utils.getNodeList(lbl1, lbl2, lbl3, lbl4, cb1, cb2, cb3, btn), (X / 4) * 1, 0, "#AABBCC");        
         handler.setCountryModel(cb1);
-        handler.setSectorModel(cb2);
+        handler.setSectorModel(cb2);        
         setLayoutRight();
     }
 

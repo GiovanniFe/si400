@@ -25,15 +25,13 @@ public class Strings {
 
     public static String getCsvPath() {
         if (OS.equals("win")) {
-            return getUnzipPath() + "\\32634418-aff4-4c1d-850e-bd29784b5663_Data.csv";
+            return getUnzipPath() + "\\2cd45ae2-e095-4375-8224-ff4cf176ed52_Data.csv";
         }
-        return getUnzipPath() + "/32634418-aff4-4c1d-850e-bd29784b5663_Data.csv";
+        return getUnzipPath() + "/2cd45ae2-e095-4375-8224-ff4cf176ed52_Data.csv";
     }
 
     public static String getUrl() {
-        return ("http://databank.worldbank.org/data/AjaxDownload/FileDownloadHandler.ashx"
-                + "?filename=32634418-aff4-4c1d-850e-bd29784b5663.zip&filetype=CSV"
-                + "&language=en&displayfile=Data_Extract_From_World_Development_Indicators.zip");
+        return ("http://databank.worldbank.org/data/AjaxDownload/FileDownloadHandler.ashx?filename=2cd45ae2-e095-4375-8224-ff4cf176ed52.zip&filetype=CSV&language=en&displayfile=Data_Extract_From_World_Development_Indicators.zip");
     }
 
 }

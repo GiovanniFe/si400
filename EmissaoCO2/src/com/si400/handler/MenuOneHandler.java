@@ -52,7 +52,7 @@ public class MenuOneHandler {
         cb.setValue(sectorList.get(0));        
     }
 
-    private void setYearsModel(ChoiceBox<String> cbCountry, ChoiceBox<SectorEnum> cbSector, ChoiceBox<String> cbYear) {
+    public void setYearsModel(ChoiceBox<String> cbCountry, ChoiceBox<SectorEnum> cbSector, ChoiceBox<String> cbYear) {
         List yearList = new ArrayList<>();
         Map<Integer, Double> yearsMap = new HashMap<>();
         CountryEmission ce = emissions.getEmissions().get(cbCountry.getValue());
