@@ -23,7 +23,7 @@ public class Emissions {
     private Map<String, CountryEmission> emissions;
 
     public Emissions() {
-        emissions = new HashMap<>();
+        emissions = new HashMap<>();        
     }
 
     public Map<String, CountryEmission> getEmissions() {

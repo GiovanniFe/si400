@@ -1,5 +1,4 @@
 package com.si400.emissaoco2;
-
 import com.si400.view.SplashView;
 
 /**
@@ -13,11 +12,9 @@ public class EmissaoCO2 {
      */
     public static void main(String[] args) {
         try {
-//            new DataFilterHandler(new DataFilterView(), new Emissions());
             new SplashView().display();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-//        new SplashHandler(new SplashView());
     }
 }

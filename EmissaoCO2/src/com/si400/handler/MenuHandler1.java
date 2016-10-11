@@ -3,44 +3,53 @@ package com.si400.handler;
 import com.si400.enums.SectorEnum;
 import com.si400.model.CountryEmission;
 import com.si400.model.Emissions;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import com.si400.view.MenuView;
+import com.si400.view.MenuView1;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javafx.scene.control.ChoiceBox;
-import javax.swing.DefaultComboBoxModel;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.Scene;
 
 /**
  *
  * @author giovanni
  */
-public class MenuOneHandler {
+public class MenuHandler1 {
 
     private Emissions emissions;
+    private MenuView view;
 
-    public MenuOneHandler() {
+    public MenuHandler1(MenuView1 v) {
         emissions = new Emissions();
+        view = v;
         try {
             emissions.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        setModels();
+        addEvents();
     }
 
-    public void setCountryModel(ChoiceBox<String> cb) {
+    public Scene getScene() {
+        return new Scene(view.getLayoutMaster());
+    }
+
+    public void setCountryModel() {
         List<String> countryList = new ArrayList<>();
         for (String key : emissions.getEmissions().keySet()) {
             countryList.add(key);
         }
         java.util.Collections.sort(countryList);
-        cb.getItems().addAll(countryList);
-        cb.setValue(countryList.get(0));
+        view.getCbCountry().getItems().addAll(countryList);
+        view.getCbCountry().setValue(countryList.get(0));
     }
 
-    public void setSectorModel(ChoiceBox<SectorEnum> cb) {
+    public void setSectorModel() {
         List<SectorEnum> sectorList = new ArrayList<>();
         sectorList.add(SectorEnum.BLDG);
         sectorList.add(SectorEnum.ETOT);
@@ -48,15 +57,15 @@ public class MenuOneHandler {
         sectorList.add(SectorEnum.OTHX);
         sectorList.add(SectorEnum.TRAN);
         java.util.Collections.sort(sectorList);
-        cb.getItems().addAll(sectorList);
-        cb.setValue(sectorList.get(0));        
+        view.getCbSector().getItems().addAll(sectorList);
+        view.getCbSector().setValue(sectorList.get(0));
     }
 
-    public void setYearsModel(ChoiceBox<String> cbCountry, ChoiceBox<SectorEnum> cbSector, ChoiceBox<String> cbYear) {
+    public void setYearsModel() {
         List yearList = new ArrayList<>();
         Map<Integer, Double> yearsMap = new HashMap<>();
-        CountryEmission ce = emissions.getEmissions().get(cbCountry.getValue());
-        switch ((SectorEnum) cbSector.getValue()) {
+        CountryEmission ce = emissions.getEmissions().get((String) view.getCbCountry().getValue());
+        switch ((SectorEnum) view.getCbSector().getValue()) {
             case BLDG:
                 yearsMap = ce.getBuildingsAndCommercial();
                 break;
@@ -82,22 +91,31 @@ public class MenuOneHandler {
             }
         }
         java.util.Collections.sort(yearList);
-        cbYear.getItems().addAll(yearList);
+        if (!yearList.isEmpty()) {
+            view.getCbYear().getItems().addAll(yearList);
+            view.getCbYear().setValue(yearList.get(0));
+        }
     }
 
-//    private void addEvents() {
-//        view.getCbSector().addItemListener(new ItemListener() {
-//            @Override
-//            public void itemStateChanged(ItemEvent e) {
-//                setYearsModel();
-//            }
-//        });
-//
-//        view.getCbCountry().addItemListener(new ItemListener() {
-//            @Override
-//            public void itemStateChanged(ItemEvent e) {
-//                setYearsModel();
-//            }
-//        });
-//    }
+    private void addEvents() {
+        view.getCbCountry().getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                setYearsModel();
+            }
+        });
+
+        view.getCbSector().getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                setYearsModel();
+            }
+        });
+    }
+
+    private void setModels() {
+        setCountryModel();
+        setSectorModel();
+        setYearsModel();
+    }
 }

@@ -19,13 +19,22 @@ public class Utils {
         return btn;
     }
 
-    public static GridPane getGpLeftLayout(List nodes, int minWidth, int minHeight, String bgColor) {
+    public static GridPane getGpLeftLayout(List nodes, int minWidth, int minHeight) {
+        GridPane gp = getGpLayout(nodes, minWidth, minHeight);
+        gp.setPadding(new Insets(15));
+        return gp;
+    }
+
+    public static GridPane getGpTopLayout(List nodes, int minWidth, int minHeight) {
+        return getGpLayout(nodes, minWidth, minHeight);
+    }
+
+    private static GridPane getGpLayout(List nodes, int minWidth, int minHeight) {
         GridPane gp = new GridPane();
         gp.setStyle("-fx-background-color: #AABBCC;");
         gp.setMinWidth(minWidth);
         gp.setMinHeight(minHeight);
         gp.getChildren().addAll(nodes);
-        gp.setPadding(new Insets(15));
         gp.setVgap(20);
         gp.setHgap(20);
         return gp;

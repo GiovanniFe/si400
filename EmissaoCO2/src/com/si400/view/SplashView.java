@@ -1,5 +1,6 @@
 package com.si400.view;
 
+import com.si400.handler.MenuHandler1;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -42,7 +43,7 @@ public class SplashView extends Application {
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished(e -> {
             window.close();
-            new MenuView().display();
+            new ContainerView().display(new MenuHandler1(new MenuView1(900, 600)).getScene());
         });
         delay.play();
     }
