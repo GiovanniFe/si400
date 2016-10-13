@@ -17,13 +17,15 @@ import javafx.scene.text.Font;
 public class MenuView1 extends MenuView {
 
     private GridPane layoutLeft;
-    private Label lblFilters, lblCountry, lblSector, lblYear;
+    private final Label lblFilters, lblCountry, lblSector, lblYear;
     private final ChoiceBox cbCountry, cbSector, cbYear;
-    private final Button btn;
+    private final Button btnGenerate;
     private int X, Y;
 
-    public MenuView1(int X, int Y) {
-        super(X, Y);
+    public MenuView1(int x, int y) {
+        super(x, y);
+        X = x;
+        Y = y;
         lblFilters = new Label("Filtros");
         lblCountry = new Label("PAÍS");
         lblSector = new Label("SETOR");
@@ -31,7 +33,8 @@ public class MenuView1 extends MenuView {
         cbCountry = new ChoiceBox<>();
         cbSector = new ChoiceBox<>();
         cbYear = new ChoiceBox<>();
-        btn = Utils.getButton("Visualizar", 80, 30);
+        layoutRight = new GridPane();
+        btnGenerate = Utils.getButton("Gerar", 80, 30);
     }
 
     public BorderPane getLayoutMaster() {
@@ -59,14 +62,24 @@ public class MenuView1 extends MenuView {
         GridPane.setConstraints(cbSector, 0, 4);
         GridPane.setConstraints(lblYear, 0, 5);
         GridPane.setConstraints(cbYear, 0, 6);
-        GridPane.setConstraints(btn, 0, 7);
-        GridPane.setHalignment(btn, HPos.RIGHT);
-        layoutLeft = Utils.getGpLeftLayout(Utils.getNodeList(lblFilters, lblCountry, lblSector, lblYear, cbCountry, cbSector, cbYear, btn), (X / 4) * 1, 0);
+        GridPane.setConstraints(btnGenerate, 0, 7);
+        GridPane.setHalignment(btnGenerate, HPos.RIGHT);
+        layoutLeft = Utils.getGpLeftLayout(Utils.getNodeList(lblFilters, lblCountry, lblSector, lblYear, cbCountry, cbSector, cbYear, btnGenerate), (X / 4) * 1, (Y / 26) * 23);
         layoutLeft.setStyle("-fx-background-color: linear-gradient(#76869b 0%, #59738d 25%, #4b6482 100%);");
-        super.setLayoutRight();
+        setLayoutRight();
+    }
+
+    public void setLayoutRight() {
+        layoutRight.setStyle("-fx-background-color: #BBCCDD;");
+        layoutRight.setMinWidth((X / 4) * 3);
+        super.setLayoutTop();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Getters and Setters">
+    public GridPane getLayoutLeft() {
+        return layoutLeft;
+    }
+
     public Label getLblFilters() {
         return lblFilters;
     }
@@ -95,8 +108,8 @@ public class MenuView1 extends MenuView {
         return cbYear;
     }
 
-    public Button getBtn() {
-        return btn;
+    public Button getBtnGenerate() {
+        return btnGenerate;
     }
 
     // </editor-fold>

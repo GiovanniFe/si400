@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -43,7 +42,7 @@ public class SplashView extends Application {
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished(e -> {
             window.close();
-            new ContainerView().display(new MenuHandler1(new MenuView1(600, 600)).getScene());
+            new ContainerView().display(new MenuHandler1(new MenuView1(900, 900)).getScene());
         });
         delay.play();
     }

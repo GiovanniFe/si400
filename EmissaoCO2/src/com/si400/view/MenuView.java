@@ -8,6 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -17,7 +18,7 @@ import javafx.scene.text.Font;
  */
 public abstract class MenuView {
 
-    protected GridPane layoutRight;
+    protected Pane layoutRight;
     protected GridPane layoutTop;
     protected GridPane layoutBottom;
     private Button btnSair, btn1, btn2, btn3;
@@ -39,21 +40,16 @@ public abstract class MenuView {
 
     public abstract ChoiceBox getCbYear();
 
-    public abstract Button getBtn();
+    public abstract Button getBtnGenerate();
 
     public abstract BorderPane getLayoutMaster();
+
+    public abstract GridPane getLayoutLeft();
 
     // </editor-fold>
     public MenuView(int X, int Y) {
         this.X = X;
         this.Y = Y;
-    }
-
-    public void setLayoutRight() {
-        layoutRight = new GridPane();
-        layoutRight.setStyle("-fx-background-color: #BBCCDD;");
-        layoutRight.setMinWidth((X / 4) * 3);
-        setLayoutTop();
     }
 
     public void setLayoutTop() {
@@ -63,14 +59,14 @@ public abstract class MenuView {
         btn1 = Utils.getButton("teste", X / 5, Y / 20);
         btn2 = Utils.getButton("teste", X / 5, Y / 20);
         btn3 = Utils.getButton("teste", X / 5, Y / 20);
-        btnSair = Utils.getButton("Sair", X / 7, Y / 20);
+        btnSair = Utils.getButton("Sair", X / 11, Y / 20);
         btnSair.setOnAction(e -> System.exit(0));
         GridPane.setConstraints(lblTitle, 0, 0);
         GridPane.setConstraints(btn1, 1, 0);
         GridPane.setConstraints(btn2, 2, 0);
         GridPane.setConstraints(btn3, 3, 0);
         GridPane.setConstraints(btnSair, 4, 0);
-        layoutTop = Utils.getGpTopLayout(Utils.getNodeList(lblTitle, btnSair, btn1, btn2, btn3), 0, (Y / 13));
+        layoutTop = Utils.getGpTopLayout(Utils.getNodeList(lblTitle, btnSair, btn1, btn2, btn3), 0, (Y / 26) * 2);
         layoutTop.setStyle("-fx-background-color: linear-gradient(#98a8bd 0%, #8195af 25%, #6d86a4 100%);");
         setLayoutBottom();
     }
@@ -79,10 +75,23 @@ public abstract class MenuView {
         lblBottom = new Label("Gabriel Brito | Giovanni Ferreira | João Lucas | 2016");
         lblBottom.setTextFill(Color.web("#FFFFFF"));
         layoutBottom = new GridPane();
+        layoutBottom.setMinHeight((Y / 26));
         layoutBottom.setPadding(new Insets(5));
         layoutBottom.setAlignment(Pos.CENTER_RIGHT);
         layoutBottom.getChildren().add(lblBottom);
         layoutBottom.setStyle("-fx-background-color: linear-gradient(#98a8bd 0%, #8195af 25%, #6d86a4 100%);");
         layoutBottom.setMinHeight(30);
+    }
+
+    public GridPane getLayoutTop() {
+        return layoutTop;
+    }
+
+    public GridPane getLayoutBottom() {
+        return layoutBottom;
+    }
+
+    public Pane getLayoutRight() {
+        return layoutRight;
     }
 }

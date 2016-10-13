@@ -6,11 +6,11 @@ package com.si400.enums;
  */
 public enum SectorEnum {
 
-    ETOT("Produção de energia e calor"),
-    MANF("Indústria e construção"),
-    BLDG("Casas e prédios comerciais e públicos"),
-    TRAN("Transporte"),
-    OTHX("Outros Setores");
+    ETOT("Electricity and heat production"),
+    MANF("Industry and Construction"),
+    BLDG("Houses and public and commercials buildings"),
+    TRAN("Transport"),
+    OTHX("Other Sectors");
     private String text;
 
     private SectorEnum(String t) {
