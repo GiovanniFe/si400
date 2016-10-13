@@ -7,6 +7,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
@@ -30,7 +31,7 @@ public class MenuView1 extends MenuView {
         cbCountry = new ChoiceBox<>();
         cbSector = new ChoiceBox<>();
         cbYear = new ChoiceBox<>();
-        btn = new Button("Visualizar");
+        btn = Utils.getButton("Visualizar", 80, 30);
     }
 
     public BorderPane getLayoutMaster() {
@@ -39,10 +40,14 @@ public class MenuView1 extends MenuView {
     }
 
     public void setLayoutLeft() {
-        lblFilters.setFont(new Font(38));
+        lblFilters.setFont(new Font(24));
+        lblFilters.setTextFill(Color.web("#FFFFFF"));
         lblCountry.setFont(new Font(18));
+        lblCountry.setTextFill(Color.web("#FFFFFF"));
         lblSector.setFont(new Font(18));
+        lblSector.setTextFill(Color.web("#FFFFFF"));
         lblYear.setFont(new Font(18));
+        lblYear.setTextFill(Color.web("#FFFFFF"));
         cbCountry.setMinHeight(30);
         cbSector.setMinHeight(30);
         cbYear.setMinHeight(30);
@@ -57,6 +62,7 @@ public class MenuView1 extends MenuView {
         GridPane.setConstraints(btn, 0, 7);
         GridPane.setHalignment(btn, HPos.RIGHT);
         layoutLeft = Utils.getGpLeftLayout(Utils.getNodeList(lblFilters, lblCountry, lblSector, lblYear, cbCountry, cbSector, cbYear, btn), (X / 4) * 1, 0);
+        layoutLeft.setStyle("-fx-background-color: linear-gradient(#76869b 0%, #59738d 25%, #4b6482 100%);");
         super.setLayoutRight();
     }
 

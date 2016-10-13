@@ -92,9 +92,13 @@ public class MenuHandler1 {
         }
         java.util.Collections.sort(yearList);
         if (!yearList.isEmpty()) {
+            view.getCbYear().getItems().removeAll(view.getCbYear().getItems());
             view.getCbYear().getItems().addAll(yearList);
             view.getCbYear().setValue(yearList.get(0));
+        } else {
+            view.getCbYear().getItems().removeAll(view.getCbYear().getItems());
         }
+
     }
 
     private void addEvents() {
