@@ -49,12 +49,15 @@ public class Utils {
     }
 
     public static GridPane getGpLeftLayout(List nodes, int minWidth, int minHeight) {
-        GridPane gp = getGpLayout(nodes, minWidth, minHeight);        
+        GridPane gp = getGpLayout(nodes, minWidth, minHeight);
+        gp.setPadding(new Insets(15));
         return gp;
     }
 
     public static GridPane getGpTopLayout(List nodes, int minWidth, int minHeight) {
-        return getGpLayout(nodes, minWidth, minHeight);
+        GridPane gp = getGpLayout(nodes, minWidth, minHeight);
+        gp.setPadding(new Insets(8));
+        return gp;
     }
 
     private static GridPane getGpLayout(List nodes, int minWidth, int minHeight) {
@@ -64,7 +67,6 @@ public class Utils {
         gp.getChildren().addAll(nodes);
         gp.setVgap(20);
         gp.setHgap(20);
-        gp.setPadding(new Insets(15));
         return gp;
     }
 

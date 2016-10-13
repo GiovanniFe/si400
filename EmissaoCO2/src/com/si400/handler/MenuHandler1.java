@@ -102,18 +102,12 @@ public class MenuHandler1 {
     }
 
     private void addEvents() {
-        view.getCbCountry().getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                setYearsModel();
-            }
+        view.getCbCountry().getSelectionModel().selectedItemProperty().addListener((ObservableValue observable, Object oldValue, Object newValue) -> {
+            setYearsModel();
         });
 
-        view.getCbSector().getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                setYearsModel();
-            }
+        view.getCbSector().getSelectionModel().selectedItemProperty().addListener((ObservableValue observable, Object oldValue, Object newValue) -> {
+            setYearsModel();
         });
     }
 
