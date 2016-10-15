@@ -1,12 +1,19 @@
 package com.si400.model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -48,25 +55,14 @@ public class Utils {
         return btn;
     }
 
-    public static GridPane getGpLeftLayout(List nodes, int minWidth, int minHeight) {
-        GridPane gp = getGpLayout(nodes, minWidth, minHeight);
-        gp.setPadding(new Insets(15));
-        return gp;
-    }
-
-    public static GridPane getGpTopLayout(List nodes, int minWidth, int minHeight) {
-        GridPane gp = getGpLayout(nodes, minWidth, minHeight);
-        gp.setPadding(new Insets(8));
-        return gp;
-    }
-
-    private static GridPane getGpLayout(List nodes, int minWidth, int minHeight) {
+    public static GridPane getGpLayout(int minWidth, int minHeight, Pos pos, Node... nodes) {
         GridPane gp = new GridPane();
-        gp.setMinWidth(minWidth);
-        gp.setMinHeight(minHeight);
+        gp.setMinSize(minWidth, minHeight);
         gp.getChildren().addAll(nodes);
         gp.setVgap(20);
         gp.setHgap(20);
+        gp.setPadding(new Insets(15));
+        gp.setAlignment(pos);
         return gp;
     }
 
@@ -76,5 +72,32 @@ public class Utils {
             list.add(n);
         }
         return list;
+    }
+
+    public static void setLabelStyle(int fSize, Label... lbl) {
+        for (Label l : lbl) {
+            l.setFont(new Font(fSize));
+            l.setTextFill(Color.web("#FFFFFF"));
+        }
+    }
+
+    public static void setCbStyle(ChoiceBox... choice) {
+        for (ChoiceBox cb : choice) {
+            cb.setMinHeight(30);
+            cb.setMinWidth(90);
+        }
+    }
+
+    public static String formatDouble(Double d) {
+        return new DecimalFormat("#.00").format(d);
+    }
+
+    public static List getYearList(Map<Integer, Double> yearsMap, List yearList) {        
+        for (Integer key : yearsMap.keySet()) {
+            if (yearsMap.get(key) != null && yearsMap.get(key) != 0d) {
+                yearList.add(key.toString());
+            }
+        }
+        return yearList;
     }
 }

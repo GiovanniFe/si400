@@ -2,13 +2,13 @@ package com.si400.view;
 
 import com.si400.model.Utils;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+import javafx.scene.layout.Pane;
 
 /**
  *
@@ -17,24 +17,22 @@ import javafx.scene.text.Font;
 public class MenuView1 extends MenuView {
 
     private GridPane layoutLeft;
+    private final GridPane layoutRight;
     private final Label lblFilters, lblCountry, lblSector, lblYear;
     private final ChoiceBox cbCountry, cbSector, cbYear;
     private final Button btnGenerate;
-    private int X, Y;
 
     public MenuView1(int x, int y) {
         super(x, y);
-        X = x;
-        Y = y;
-        lblFilters = new Label("Filtros");
-        lblCountry = new Label("PAÍS");
-        lblSector = new Label("SETOR");
-        lblYear = new Label("ANO");
+        lblFilters = new Label("Filters");
+        lblCountry = new Label("Country");
+        lblSector = new Label("Sector");
+        lblYear = new Label("Year");
         cbCountry = new ChoiceBox<>();
         cbSector = new ChoiceBox<>();
         cbYear = new ChoiceBox<>();
         layoutRight = new GridPane();
-        btnGenerate = Utils.getButton("Gerar", 80, 30);
+        btnGenerate = Utils.getButton("Generate", 80, 30);
     }
 
     public BorderPane getLayoutMaster() {
@@ -43,18 +41,9 @@ public class MenuView1 extends MenuView {
     }
 
     public void setLayoutLeft() {
-        lblFilters.setFont(new Font(24));
-        lblFilters.setTextFill(Color.web("#FFFFFF"));
-        lblCountry.setFont(new Font(18));
-        lblCountry.setTextFill(Color.web("#FFFFFF"));
-        lblSector.setFont(new Font(18));
-        lblSector.setTextFill(Color.web("#FFFFFF"));
-        lblYear.setFont(new Font(18));
-        lblYear.setTextFill(Color.web("#FFFFFF"));
-        cbCountry.setMinHeight(30);
-        cbSector.setMinHeight(30);
-        cbYear.setMinHeight(30);
-        cbYear.setMinWidth(90);
+        Utils.setLabelStyle(24, lblFilters);
+        Utils.setLabelStyle(18, lblCountry, lblSector, lblYear);
+        Utils.setCbStyle(cbCountry, cbSector, cbYear);
         GridPane.setConstraints(lblFilters, 0, 0);
         GridPane.setConstraints(lblCountry, 0, 1);
         GridPane.setConstraints(cbCountry, 0, 2);
@@ -64,20 +53,25 @@ public class MenuView1 extends MenuView {
         GridPane.setConstraints(cbYear, 0, 6);
         GridPane.setConstraints(btnGenerate, 0, 7);
         GridPane.setHalignment(btnGenerate, HPos.RIGHT);
-        layoutLeft = Utils.getGpLeftLayout(Utils.getNodeList(lblFilters, lblCountry, lblSector, lblYear, cbCountry, cbSector, cbYear, btnGenerate), (X / 4) * 1, (Y / 26) * 23);
+        layoutLeft = Utils.getGpLayout((getX() / 4) * 1, (getY() / 26) * 23, Pos.TOP_CENTER, lblFilters, lblCountry, lblSector, lblYear, cbCountry, cbSector, cbYear, btnGenerate);
         layoutLeft.setStyle("-fx-background-color: linear-gradient(#76869b 0%, #59738d 25%, #4b6482 100%);");
         setLayoutRight();
     }
 
     public void setLayoutRight() {
         layoutRight.setStyle("-fx-background-color: #BBCCDD;");
-        layoutRight.setMinWidth((X / 4) * 3);
+        layoutRight.setMinWidth((getX() / 4) * 3);
+        layoutRight.setAlignment(Pos.CENTER);
         super.setLayoutTop();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public GridPane getLayoutLeft() {
         return layoutLeft;
+    }
+
+    public Pane getLayoutRight() {
+        return layoutRight;
     }
 
     public Label getLblFilters() {

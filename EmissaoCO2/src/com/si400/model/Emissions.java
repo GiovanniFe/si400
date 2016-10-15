@@ -1,6 +1,5 @@
 package com.si400.model;
 
-
 import com.opencsv.CSVReader;
 import com.si400.util.Unzip;
 import java.io.BufferedInputStream;
@@ -23,7 +22,7 @@ public class Emissions {
     private Map<String, CountryEmission> emissions;
 
     public Emissions() {
-        emissions = new HashMap<>();        
+        emissions = new HashMap<>();
     }
 
     public Map<String, CountryEmission> getEmissions() {
@@ -38,6 +37,7 @@ public class Emissions {
         BufferedInputStream in = null;
         FileOutputStream fout = null;
         try {
+            createDirectory();
             in = new BufferedInputStream(new URL(Strings.getUrl()).openStream());
             fout = new FileOutputStream(Strings.getZipPath());
             final byte data[] = new byte[1024];
@@ -54,7 +54,7 @@ public class Emissions {
             }
         }
 
-        new Unzip().unzip(Strings.getZipPath(), Strings.getUnzipPath());
+        new Unzip().unzip(Strings.getZipPath(), Strings.getDirPath());
 
         CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(new File(Strings.getCsvPath()))), ',');
         String[] row;
@@ -95,6 +95,12 @@ public class Emissions {
             }
 
             emissions.put(row[2], ce);
+        }
+    }
+
+    private void createDirectory() {
+        if (!new File(Strings.getDirPath()).exists()) {
+            new File(Strings.getDirPath()).mkdir();
         }
     }
 
