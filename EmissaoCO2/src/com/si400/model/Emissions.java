@@ -107,7 +107,7 @@ public class Emissions {
     private void setYears(String[] line, Map<Integer, Double> ce) {
         ce.put(1990, line[4].equals("..") ? 0d : Double.parseDouble(line[4]));
         ce.put(2000, line[5].equals("..") ? 0d : Double.parseDouble(line[5]));
-        for (int i = 6; i < 14; i++) {
+        for (int i = 7; i < 14; i++) {
             ce.put(i + 2000, line[i].equals("..") ? 0d : Double.parseDouble(line[i]));
         }
     }

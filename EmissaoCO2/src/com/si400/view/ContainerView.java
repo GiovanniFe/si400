@@ -13,6 +13,7 @@ public class ContainerView {
 
     public void display(Scene scene) {
         window = new Stage();
+        window.setTitle("Country Emissions");
         window.setScene(scene);
         window.show();
     }

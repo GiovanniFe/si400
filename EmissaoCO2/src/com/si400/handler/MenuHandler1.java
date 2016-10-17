@@ -8,8 +8,10 @@ import com.si400.view.MenuView1;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +20,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 
 /**
  *
@@ -47,19 +50,19 @@ public class MenuHandler1 {
         return new Scene(view.getLayoutMaster());
     }
 
-    public void setCountryModel() {
+    private void setCountryModel() {
         List<String> countryList = new ArrayList<>();
         for (String key : emissions.getEmissions().keySet()) {
             countryList.add(key);
         }
         java.util.Collections.sort(countryList);
         view.getCbCountry().getItems().addAll(countryList);
-        view.getCbCountry().setValue(countryList.get(0));
-        country = countryList.get(0);
+        view.getCbCountry().setValue(country = countryList.get(0));
     }
 
-    public void setSectorModel() {
+    private void setSectorModel() {
         List<SectorEnum> sectorList = new ArrayList<>();
+        sectorList.add(SectorEnum.ALLX);
         sectorList.add(SectorEnum.BLDG);
         sectorList.add(SectorEnum.ETOT);
         sectorList.add(SectorEnum.MANF);
@@ -67,15 +70,18 @@ public class MenuHandler1 {
         sectorList.add(SectorEnum.TRAN);
         java.util.Collections.sort(sectorList);
         view.getCbSector().getItems().addAll(sectorList);
-        view.getCbSector().setValue(sectorList.get(0));
-        sector = sectorList.get(0);
+        view.getCbSector().setValue(sector = sectorList.get(0));
     }
 
-    public void setYearsModel() {
+    private void setYearsModel() {
+        if (sector == SectorEnum.ALLX) {
+            setYearsModelAll();
+            return;
+        }
         List yearList = new ArrayList<>();
         Map<Integer, Double> yearsMap = new HashMap<>();
-        CountryEmission ce = emissions.getEmissions().get((String) view.getCbCountry().getValue());
-        switch ((SectorEnum) view.getCbSector().getValue()) {
+        CountryEmission ce = emissions.getEmissions().get(country);
+        switch (sector) {
             case BLDG:
                 yearsMap = ce.getBuildingsAndCommercial();
                 break;
@@ -92,12 +98,42 @@ public class MenuHandler1 {
                 yearsMap = ce.getTransport();
                 break;
         }
-        java.util.Collections.sort(Utils.getYearList(yearsMap, yearList));
-        if (!yearList.isEmpty()) {
+        setCbYearWithList(Utils.getYearList(yearsMap, yearList));
+    }
+
+    private void setYearsModelAll() {
+        Set yearSet = new HashSet();
+        List<Integer> yearSetList = new ArrayList(), yearList = new ArrayList();
+        List<Map<Integer, Double>> sectorList = new ArrayList();
+        CountryEmission ce = emissions.getEmissions().get(country);
+        Utils.addAllIntegerList(yearList, 1990, 2000, 2007, 2008, 2009, 2010, 2011, 2012, 2013);
+        Utils.addAllMapList(sectorList, ce.getBuildingsAndCommercial(), ce.getEletricityAndHeat(), ce.getIndustryAndConstruction(),
+                ce.getOtherSector(), ce.getTransport());
+        for (Integer y : yearList) {
+            for (Map<Integer, Double> map : sectorList) {
+                if (map.get(y) != null && !map.get(y).equals(0d)) {
+                    yearSet.add(y);
+                    continue;
+                }
+                yearSet.remove(y);
+            }
+        }
+        yearSetList.addAll(yearSet);
+        java.util.Collections.sort(yearSetList);
+        setCbYearWithList(yearSetList);
+    }
+
+    private void setCbYearWithList(List list) {
+        java.util.Collections.sort(list);
+        if (!list.isEmpty()) {
             view.getCbYear().getItems().removeAll(view.getCbYear().getItems());
-            view.getCbYear().getItems().addAll(yearList);
-            view.getCbYear().setValue(yearList.get(0));
-            year = Integer.parseInt(String.valueOf(yearList.get(0)));
+            view.getCbYear().getItems().addAll(list);
+            if (year != null) {
+                view.getCbYear().setValue(list.contains(year) ? year : list.get(0));
+            } else {
+                view.getCbYear().setValue(list.get(0));
+            }
+            year = Integer.parseInt(String.valueOf(list.get(0)));
         } else {
             year = null;
             view.getCbYear().getItems().removeAll(view.getCbYear().getItems());
@@ -117,7 +153,9 @@ public class MenuHandler1 {
         });
 
         view.getCbYear().getSelectionModel().selectedItemProperty().addListener((ObservableValue observable, Object oldValue, Object newValue) -> {
-            year = Integer.parseInt(String.valueOf(view.getCbYear().getValue()));
+            if (view.getCbYear().getValue() != null) {
+                year = Integer.parseInt(String.valueOf(view.getCbYear().getValue()));
+            }
         });
         view.getBtnGenerate().setOnAction(e -> setChart());
     }

@@ -6,6 +6,7 @@ package com.si400.enums;
  */
 public enum SectorEnum {
 
+    ALLX("All"),
     ETOT("Electricity and heat production"),
     MANF("Industry and Construction"),
     BLDG("Houses and public and commercials buildings"),

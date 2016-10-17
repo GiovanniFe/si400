@@ -1,12 +1,16 @@
 package com.si400.model;
 
+import com.si400.view.MenuView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -52,6 +56,9 @@ public class Utils {
                     + "-fx-font-size: 12px;\n"
                     + "-fx-text-fill: white;");
         });
+
+        btn.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> btn.getScene().setCursor(Cursor.HAND));
+        btn.addEventHandler(MouseEvent.MOUSE_EXITED, e -> btn.getScene().setCursor(Cursor.DEFAULT));
         return btn;
     }
 
@@ -92,12 +99,26 @@ public class Utils {
         return new DecimalFormat("#.00").format(d);
     }
 
-    public static List getYearList(Map<Integer, Double> yearsMap, List yearList) {        
+    public static List getYearList(Map<Integer, Double> yearsMap, List yearList) {
         for (Integer key : yearsMap.keySet()) {
             if (yearsMap.get(key) != null && yearsMap.get(key) != 0d) {
                 yearList.add(key.toString());
             }
         }
         return yearList;
+    }
+
+    public static List addAllIntegerList(List<Integer> list, Integer... iSet) {
+        for (Integer i : iSet) {
+            list.add(i);
+        }
+        return list;
+    }
+
+    public static List addAllMapList(List<Map<Integer, Double>> list, Map<Integer, Double>... dSet) {
+        for (Map<Integer, Double> d : dSet) {
+            list.add(d);
+        }
+        return list;
     }
 }
