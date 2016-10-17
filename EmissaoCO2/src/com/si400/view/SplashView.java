@@ -39,24 +39,24 @@ public class SplashView extends Application {
         scene = new Scene(layout, 515, 307);
         window.setScene(scene);
         window.show();
-        PauseTransition delay = new PauseTransition(Duration.seconds(1));
+        PauseTransition delay = new PauseTransition(Duration.seconds(5));
         delay.setOnFinished(e -> {
             window.close();
-            new ContainerView().display(new MenuHandler1(new MenuView1(900, 900)).getScene());
+            new ContainerView().display(new MenuHandler1(new MenuView1(900, 650)).getScene());
         });
         delay.play();
     }
 
     private void setLabels() {
-        label = new Label("Emissões de Dióxido de Carbono");
+        label = new Label("Carbon Dioxide Emissions");
         label.setFont(new Font("Arial Black", 20));
         label.setLayoutX(150);
         label.setLayoutY(180);
         label.setTextFill(new Color(1, 1, 1, 1));
 
-        label1 = new Label("por Setor");
+        label1 = new Label("by Sector");
         label1.setFont(new Font("Arial Black", 18));
-        label1.setLayoutX(393);
+        label1.setLayoutX(300);
         label1.setLayoutY(215);
         label1.setTextFill(new Color(1, 1, 1, 1));
 

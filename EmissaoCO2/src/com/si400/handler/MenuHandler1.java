@@ -169,6 +169,9 @@ public class MenuHandler1 {
         view.getLayoutRight().getChildren().removeAll(view.getLayoutRight().getChildren());
         PieChart chart = new PieChart();
         switch (sector) {
+            case ALLX:
+                chart = generatePieChart(getValuesFromCe(emissions.getEmissions().get(country), year));
+                break;
             case BLDG:
                 chart = generatePieChart(emissions.getEmissions().get(country).getBuildingsAndCommercial().get(year), SectorEnum.BLDG.toString());
                 break;
@@ -189,14 +192,44 @@ public class MenuHandler1 {
 
     private PieChart generatePieChart(Double value, String sector) {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data(sector + " " + Utils.formatDouble(value) + " %", value),
-                new PieChart.Data("Remaining Sectors " + Utils.formatDouble(100 - value) + " %", 100 - value));
+                new PieChart.Data(sector + " " + Utils.formatDouble(value) + "% ", value),
+                new PieChart.Data("Remaining Sectors " + Utils.formatDouble(100 - value) + "% ", 100 - value));
         PieChart p = new PieChart(pieChartData);
         p.setMinWidth((view.getX() / 8) * 6);
         p.setMinHeight((view.getY() / 26) * 20);
         p.setLabelsVisible(false);
         p.setTitle("Individual Sector");
         return p;
+    }
+
+    private PieChart generatePieChart(Map<SectorEnum, Double> mapNum) {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data(SectorEnum.BLDG.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.BLDG)) + "% ", mapNum.get(SectorEnum.BLDG)),
+                new PieChart.Data(SectorEnum.ETOT.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.ETOT)) + "% ", mapNum.get(SectorEnum.ETOT)),
+                new PieChart.Data(SectorEnum.MANF.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.MANF)) + "% ", mapNum.get(SectorEnum.MANF)),
+                new PieChart.Data(SectorEnum.TRAN.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.TRAN)) + "% ", mapNum.get(SectorEnum.TRAN)),
+                new PieChart.Data(SectorEnum.OTHX.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.OTHX)) + "% ", mapNum.get(SectorEnum.OTHX)));
+        PieChart p = new PieChart(pieChartData);
+        p.setMinWidth((view.getX() / 11) * 6);
+        p.setMinHeight((view.getY() / 11) * 6);
+        p.setLabelsVisible(false);
+        p.setTitle("All Sectors");
+
+        System.out.println(SectorEnum.ETOT.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.ETOT)) + " %");
+        System.out.println(SectorEnum.MANF.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.MANF)) + " %");
+        System.out.println(SectorEnum.TRAN.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.TRAN)) + " %");
+        System.out.println(SectorEnum.OTHX.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.OTHX)) + " %");
+        return p;
+    }
+
+    private Map getValuesFromCe(CountryEmission ce, int year) {
+        Map<SectorEnum, Double> mapNum = new HashMap<>();
+        mapNum.put(SectorEnum.BLDG, ce.getBuildingsAndCommercial().get(year));
+        mapNum.put(SectorEnum.ETOT, ce.getEletricityAndHeat().get(year));
+        mapNum.put(SectorEnum.MANF, ce.getIndustryAndConstruction().get(year));
+        mapNum.put(SectorEnum.TRAN, ce.getTransport().get(year));
+        mapNum.put(SectorEnum.OTHX, ce.getOtherSector().get(year));
+        return mapNum;
     }
 
     private void setModels() {

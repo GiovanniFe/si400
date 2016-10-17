@@ -41,7 +41,7 @@ public class Strings {
     }
 
     public static String getUrl() {
-        return ("http://databank.worldbank.org/data/AjaxDownload/FileDownloadHandler.ashx?filename=95c57340-718d-4983-b9db-93d4daa81f94.zip&filetype=CSV&language=en&displayfile=Data_Extract_From_World_Development_Indicators.zip");
+        return ("http://databank.worldbank.org/data/AjaxDownload/FileDownloadHandler.ashx?filename=3b6b0302-9ff8-4dbe-9bf7-5ee736637e2f.zip&filetype=CSV&language=en&displayfile=Data_Extract_From_World_Development_Indicators.zip");
     }
 
 }

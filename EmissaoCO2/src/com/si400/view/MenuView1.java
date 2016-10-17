@@ -2,6 +2,7 @@ package com.si400.view;
 
 import com.si400.model.Utils;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -61,7 +62,8 @@ public class MenuView1 extends MenuView {
     public void setLayoutRight() {
         layoutRight.setStyle("-fx-background-color: #BBCCDD;");
         layoutRight.setMinWidth((getX() / 4) * 3);
-        layoutRight.setAlignment(Pos.CENTER);
+        layoutRight.setAlignment(Pos.TOP_CENTER);
+        layoutRight.setPadding(new Insets(15));
         super.setLayoutTop();
     }
 
