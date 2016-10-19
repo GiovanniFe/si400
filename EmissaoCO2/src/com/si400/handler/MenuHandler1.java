@@ -20,7 +20,6 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
 
 /**
  *
@@ -62,12 +61,7 @@ public class MenuHandler1 {
 
     private void setSectorModel() {
         List<SectorEnum> sectorList = new ArrayList<>();
-        sectorList.add(SectorEnum.ALLX);
-        sectorList.add(SectorEnum.BLDG);
-        sectorList.add(SectorEnum.ETOT);
-        sectorList.add(SectorEnum.MANF);
-        sectorList.add(SectorEnum.OTHX);
-        sectorList.add(SectorEnum.TRAN);
+        Utils.addAllSecList(sectorList, SectorEnum.ALLX, SectorEnum.BLDG, SectorEnum.ETOT, SectorEnum.MANF, SectorEnum.OTHX, SectorEnum.TRAN);        
         java.util.Collections.sort(sectorList);
         view.getCbSector().getItems().addAll(sectorList);
         view.getCbSector().setValue(sector = sectorList.get(0));
@@ -110,12 +104,14 @@ public class MenuHandler1 {
         Utils.addAllMapList(sectorList, ce.getBuildingsAndCommercial(), ce.getEletricityAndHeat(), ce.getIndustryAndConstruction(),
                 ce.getOtherSector(), ce.getTransport());
         for (Integer y : yearList) {
+            Double valueSum = 0d;
             for (Map<Integer, Double> map : sectorList) {
                 if (map.get(y) != null && !map.get(y).equals(0d)) {
-                    yearSet.add(y);
-                    continue;
+                    valueSum += map.get(y);
                 }
-                yearSet.remove(y);
+            }
+            if (valueSum <= 101 && valueSum >= 99) {
+                yearSet.add(y);
             }
         }
         yearSetList.addAll(yearSet);
@@ -195,8 +191,8 @@ public class MenuHandler1 {
                 new PieChart.Data(sector + " " + Utils.formatDouble(value) + "% ", value),
                 new PieChart.Data("Remaining Sectors " + Utils.formatDouble(100 - value) + "% ", 100 - value));
         PieChart p = new PieChart(pieChartData);
-        p.setMinWidth((view.getX() / 8) * 6);
-        p.setMinHeight((view.getY() / 26) * 20);
+        p.setMinWidth(view.getLayoutRightX()-20);
+        p.setMinHeight(view.getLayoutRightY()-20);
         p.setLabelsVisible(false);
         p.setTitle("Individual Sector");
         return p;
@@ -210,15 +206,10 @@ public class MenuHandler1 {
                 new PieChart.Data(SectorEnum.TRAN.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.TRAN)) + "% ", mapNum.get(SectorEnum.TRAN)),
                 new PieChart.Data(SectorEnum.OTHX.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.OTHX)) + "% ", mapNum.get(SectorEnum.OTHX)));
         PieChart p = new PieChart(pieChartData);
-        p.setMinWidth((view.getX() / 11) * 6);
-        p.setMinHeight((view.getY() / 11) * 6);
+        p.setMinWidth(view.getLayoutRightX()-20);
+        p.setMinHeight(view.getLayoutRightY()-20);
         p.setLabelsVisible(false);
         p.setTitle("All Sectors");
-
-        System.out.println(SectorEnum.ETOT.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.ETOT)) + " %");
-        System.out.println(SectorEnum.MANF.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.MANF)) + " %");
-        System.out.println(SectorEnum.TRAN.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.TRAN)) + " %");
-        System.out.println(SectorEnum.OTHX.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.OTHX)) + " %");
         return p;
     }
 

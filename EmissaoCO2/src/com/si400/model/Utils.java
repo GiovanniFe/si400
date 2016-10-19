@@ -1,16 +1,14 @@
 package com.si400.model;
 
-import com.si400.view.MenuView;
+import com.si400.enums.SectorEnum;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -62,13 +60,13 @@ public class Utils {
         return btn;
     }
 
-    public static GridPane getGpLayout(int minWidth, int minHeight, Pos pos, Node... nodes) {
+    public static GridPane getGpLayout(int minWidth, int minHeight, int padding, Pos pos, Node... nodes) {
         GridPane gp = new GridPane();
         gp.setMinSize(minWidth, minHeight);
         gp.getChildren().addAll(nodes);
         gp.setVgap(20);
         gp.setHgap(20);
-        gp.setPadding(new Insets(15));
+        gp.setPadding(new Insets(padding));
         gp.setAlignment(pos);
         return gp;
     }
@@ -118,6 +116,13 @@ public class Utils {
     public static List addAllMapList(List<Map<Integer, Double>> list, Map<Integer, Double>... dSet) {
         for (Map<Integer, Double> d : dSet) {
             list.add(d);
+        }
+        return list;
+    }
+
+    public static List addAllSecList(List<SectorEnum> list, SectorEnum... sSet) {
+        for (SectorEnum s : sSet) {
+            list.add(s);
         }
         return list;
     }
