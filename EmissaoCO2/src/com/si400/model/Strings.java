@@ -11,16 +11,18 @@ import java.util.regex.Pattern;
 public class Strings {
 
     private static final String USR = System.getProperty("user.name");
+    private static final String OS = System.getProperty("os.name");
+    
 
     public static String getDirPath() {
-        if (PlatformUtil.isWindows()) {
+        if (OS.equals("win") || OS.equals("Windows 7")) {
             return "C:\\Users\\" + USR + "\\Documents\\EmissionFile";
         }
         return "/home/" + USR + "/Documentos/EmissionFile";
     }
 
     public static String getZipPath() {
-        if (PlatformUtil.isWindows()) {
+        if (OS.equals("win") || OS.equals("Windows 7")) {
             return getDirPath() + "\\data.zip";
         }
         return getDirPath() + "/data.zip";
@@ -31,7 +33,7 @@ public class Strings {
             if (f.isFile()) {
                 try {
                     if (f.getName().split(Pattern.quote("_"))[1].equals("Data.csv")) {
-                        return getDirPath() + (PlatformUtil.isWindows() ? "\\" : "/") + f.getName();
+                        return getDirPath() + (OS.equals("win") || OS.equals("Windows 7") ? "\\" : "/") + f.getName();
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
                 }
