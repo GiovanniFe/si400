@@ -39,10 +39,10 @@ public class SplashView extends Application {
         scene = new Scene(layout, 515, 307);
         window.setScene(scene);
         window.show();
-        PauseTransition delay = new PauseTransition(Duration.seconds(5));
+        PauseTransition delay = new PauseTransition(Duration.seconds(0));
         delay.setOnFinished(e -> {
             window.close();
-            new ContainerView().display(new MenuHandler1(new MenuView1(900, 650)).getScene());
+            new MainView().display();
         });
         delay.play();
     }

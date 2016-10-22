@@ -1,6 +1,5 @@
 package com.si400.model;
 
-import com.sun.javafx.PlatformUtil;
 import java.io.File;
 import java.util.regex.Pattern;
 
@@ -12,17 +11,16 @@ public class Strings {
 
     private static final String USR = System.getProperty("user.name");
     private static final String OS = System.getProperty("os.name");
-    
 
     public static String getDirPath() {
-        if (OS.equals("win") || OS.equals("Windows 7")) {
+        if (OS.equalsIgnoreCase("win") || OS.equalsIgnoreCase("Windows 7")) {
             return "C:\\Users\\" + USR + "\\Documents\\EmissionFile";
         }
         return "/home/" + USR + "/Documentos/EmissionFile";
     }
 
     public static String getZipPath() {
-        if (OS.equals("win") || OS.equals("Windows 7")) {
+        if (OS.equalsIgnoreCase("win") || OS.equalsIgnoreCase("Windows 7")) {
             return getDirPath() + "\\data.zip";
         }
         return getDirPath() + "/data.zip";
@@ -32,8 +30,8 @@ public class Strings {
         for (File f : new File(getDirPath()).listFiles()) {
             if (f.isFile()) {
                 try {
-                    if (f.getName().split(Pattern.quote("_"))[1].equals("Data.csv")) {
-                        return getDirPath() + (OS.equals("win") || OS.equals("Windows 7") ? "\\" : "/") + f.getName();
+                    if (f.getName().split(Pattern.quote("_"))[1].equalsIgnoreCase("Data.csv")) {
+                        return getDirPath() + (OS.equalsIgnoreCase("win") || OS.equalsIgnoreCase("Windows 7") ? "\\" : "/") + f.getName();
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
                 }

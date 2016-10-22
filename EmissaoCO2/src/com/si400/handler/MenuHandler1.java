@@ -2,9 +2,10 @@ package com.si400.handler;
 
 import com.si400.enums.SectorEnum;
 import com.si400.model.CountryEmission;
+import com.si400.model.Dimensions;
 import com.si400.model.Emissions;
 import com.si400.model.Utils;
-import com.si400.view.MenuView1;
+import com.si400.view.LeftMenuView1;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,11 +16,11 @@ import java.util.Set;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.GridPane;
 
 /**
  *
@@ -28,14 +29,16 @@ import javafx.scene.control.ButtonType;
 public class MenuHandler1 {
 
     private Emissions emissions;
-    private MenuView1 view;
+    private LeftMenuView1 view;
     private String country;
     private SectorEnum sector;
     private Integer year;
+    private GridPane layoutRight;
 
-    public MenuHandler1(MenuView1 v) {
+    public MenuHandler1(LeftMenuView1 v, GridPane layoutR) {
         emissions = new Emissions();
         view = v;
+        layoutRight = layoutR;
         try {
             emissions.load();
         } catch (IOException e) {
@@ -43,10 +46,6 @@ public class MenuHandler1 {
         }
         setModels();
         addEvents();
-    }
-
-    public Scene getScene() {
-        return new Scene(view.getLayoutMaster());
     }
 
     private void setCountryModel() {
@@ -61,7 +60,7 @@ public class MenuHandler1 {
 
     private void setSectorModel() {
         List<SectorEnum> sectorList = new ArrayList<>();
-        Utils.addAllSecList(sectorList, SectorEnum.ALLX, SectorEnum.BLDG, SectorEnum.ETOT, SectorEnum.MANF, SectorEnum.OTHX, SectorEnum.TRAN);        
+        Utils.addAllSecList(sectorList, SectorEnum.ALLX, SectorEnum.BLDG, SectorEnum.ETOT, SectorEnum.MANF, SectorEnum.OTHX, SectorEnum.TRAN);
         java.util.Collections.sort(sectorList);
         view.getCbSector().getItems().addAll(sectorList);
         view.getCbSector().setValue(sector = sectorList.get(0));
@@ -162,7 +161,7 @@ public class MenuHandler1 {
             alert.showAndWait();
             return;
         }
-        view.getLayoutRight().getChildren().removeAll(view.getLayoutRight().getChildren());
+        layoutRight.getChildren().removeAll(layoutRight.getChildren());
         PieChart chart = new PieChart();
         switch (sector) {
             case ALLX:
@@ -183,7 +182,7 @@ public class MenuHandler1 {
             case TRAN:
                 chart = generatePieChart(emissions.getEmissions().get(country).getTransport().get(year), SectorEnum.TRAN.toString());
         }
-        view.getLayoutRight().getChildren().add(chart);
+        layoutRight.getChildren().add(chart);
     }
 
     private PieChart generatePieChart(Double value, String sector) {
@@ -191,8 +190,8 @@ public class MenuHandler1 {
                 new PieChart.Data(sector + " " + Utils.formatDouble(value) + "% ", value),
                 new PieChart.Data("Remaining Sectors " + Utils.formatDouble(100 - value) + "% ", 100 - value));
         PieChart p = new PieChart(pieChartData);
-        p.setMinWidth(view.getLayoutRightX()-20);
-        p.setMinHeight(view.getLayoutRightY()-20);
+        p.setMinWidth(Dimensions.getH_SIDE()- 20);
+        p.setMinHeight(Dimensions.getH_SIDE()- 20);
         p.setLabelsVisible(false);
         p.setTitle("Individual Sector");
         return p;
@@ -206,8 +205,8 @@ public class MenuHandler1 {
                 new PieChart.Data(SectorEnum.TRAN.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.TRAN)) + "% ", mapNum.get(SectorEnum.TRAN)),
                 new PieChart.Data(SectorEnum.OTHX.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.OTHX)) + "% ", mapNum.get(SectorEnum.OTHX)));
         PieChart p = new PieChart(pieChartData);
-        p.setMinWidth(view.getLayoutRightX()-20);
-        p.setMinHeight(view.getLayoutRightY()-20);
+        p.setMinWidth(Dimensions.getH_SIDE()- 20);
+        p.setMinHeight(Dimensions.getH_SIDE()- 20);
         p.setLabelsVisible(false);
         p.setTitle("All Sectors");
         return p;
