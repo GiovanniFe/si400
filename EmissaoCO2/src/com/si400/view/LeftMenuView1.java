@@ -1,5 +1,6 @@
 package com.si400.view;
 
+import com.si400.abstracts.LeftMenuView;
 import com.si400.model.Dimensions;
 import com.si400.model.Utils;
 import javafx.geometry.HPos;
@@ -13,7 +14,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author g168746
  */
-public class LeftMenuView1 {
+public class LeftMenuView1 implements LeftMenuView {
 
     private GridPane layoutLeft;
     private final Label lblFilters, lblCountry, lblSector, lblYear;
@@ -32,7 +33,7 @@ public class LeftMenuView1 {
         setLayoutLeft();
     }
 
-    public void setLayoutLeft() {
+    private void setLayoutLeft() {
         Utils.setLabelStyle(24, lblFilters);
         Utils.setLabelStyle(18, lblCountry, lblSector, lblYear);
         Utils.setCbStyle(cbCountry, cbSector, cbYear);
@@ -45,11 +46,13 @@ public class LeftMenuView1 {
         GridPane.setConstraints(cbYear, 0, 6);
         GridPane.setConstraints(btnGenerate, 0, 7);
         GridPane.setHalignment(btnGenerate, HPos.RIGHT);
-        layoutLeft = Utils.getGpLayout(Dimensions.getW_LEFT(), Dimensions.getH_SIDE(), 10, Pos.TOP_CENTER, lblFilters, lblCountry, lblSector, lblYear, cbCountry, cbSector, cbYear, btnGenerate);
+        layoutLeft = Utils.getGpLayout(Dimensions.getW_LEFT1(), Dimensions.getH_SIDE(), 10, Pos.TOP_CENTER,
+                lblFilters, lblCountry, lblSector, lblYear, cbCountry, cbSector, cbYear, btnGenerate);
         layoutLeft.setStyle("-fx-background-color: linear-gradient(#76869b 0%, #59738d 25%, #4b6482 100%);");
     }
 
     // <editor-fold defaultstate="collapsed" desc="Getters and Setters">
+    @Override
     public GridPane getLayoutLeft() {
         return layoutLeft;
     }

@@ -6,10 +6,13 @@ package com.si400.model;
  */
 public class Dimensions {
 
-    private static final int W = 1080;
+    private static final int W = 1150;
     private static final int H = 720;
     private static final int H_SIDE = (H / 25) * 22;
-    private static final int W_LEFT = 370;
+    private static final int W_LEFT1 = 370;
+    private static final int W_LEFT2 = 275;
+    private static final int W_RIGHT1 = W - W_LEFT1;
+    private static final int W_RIGHT2 = W - W_LEFT2;
     private static final int BTN_W = ((W / 35) * 8) - 15;
     private static final int BTN_H = (H / 13) - 20;
 
@@ -33,8 +36,19 @@ public class Dimensions {
         return H_SIDE;
     }
 
-    public static int getW_LEFT() {
-        return W_LEFT;
+    public static int getW_LEFT1() {
+        return W_LEFT1;
     }
 
+    public static int getW_LEFT2() {
+        return W_LEFT2;
+    }
+
+    public static int getW_RIGHT1() {
+        return W_RIGHT1;
+    }
+
+    public static int getW_RIGHT2() {
+        return W_RIGHT2;
+    }
 }

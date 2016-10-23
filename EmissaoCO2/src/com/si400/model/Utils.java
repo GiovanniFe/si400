@@ -3,8 +3,10 @@ package com.si400.model;
 import com.si400.enums.SectorEnum;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -97,7 +99,8 @@ public class Utils {
         return new DecimalFormat("#.00").format(d);
     }
 
-    public static List getYearList(Map<Integer, Double> yearsMap, List yearList) {
+    public static List getYearList(Map<Integer, Double> yearsMap) {
+        List yearList = new ArrayList();
         for (Integer key : yearsMap.keySet()) {
             if (yearsMap.get(key) != null && yearsMap.get(key) != 0d) {
                 yearList.add(key.toString());
@@ -125,5 +128,75 @@ public class Utils {
             list.add(s);
         }
         return list;
+    }
+
+    public static List getYearListFromCountry(Emissions emissions, String country1, String country2) {
+        Set yearSet = new HashSet();
+        List<Integer> yearSetList = new ArrayList(), yearList = new ArrayList();
+        List<Map<Integer, Double>> sectorList1 = new ArrayList();
+        List<Map<Integer, Double>> sectorList2 = new ArrayList();
+        CountryEmission ce1 = emissions.getEmissions().get(country1);
+        CountryEmission ce2 = emissions.getEmissions().get(country2);
+        Utils.addAllIntegerList(yearList, 1990, 2000, 2007, 2008, 2009, 2010, 2011, 2012, 2013);
+        Utils.addAllMapList(sectorList1, ce1.getBuildingsAndCommercial(), ce1.getEletricityAndHeat(), ce1.getIndustryAndConstruction(),
+                ce1.getOtherSector(), ce1.getTransport());
+        Utils.addAllMapList(sectorList2, ce2.getBuildingsAndCommercial(), ce2.getEletricityAndHeat(), ce2.getIndustryAndConstruction(),
+                ce2.getOtherSector(), ce2.getTransport());
+        for (Integer y : yearList) {
+            Double valueSum1, valueSum2;
+            valueSum1 = sumSectorsFromYear(sectorList1, y);
+            valueSum2 = sumSectorsFromYear(sectorList2, y);
+            if ((valueSum1 <= 101 && valueSum1 >= 99) && (valueSum2 <= 101 && valueSum2 >= 99)) {
+                yearSet.add(y);
+            }
+        }
+        yearSetList.addAll(yearSet);
+        java.util.Collections.sort(yearSetList);
+        return yearSetList;
+    }
+
+    public static List getYearListFromCountry(Emissions emissions, String country) {
+        Set yearSet = new HashSet();
+        List<Integer> yearSetList = new ArrayList(), yearList = new ArrayList();
+        List<Map<Integer, Double>> sectorList = new ArrayList();
+        CountryEmission ce = emissions.getEmissions().get(country);
+        Utils.addAllIntegerList(yearList, 1990, 2000, 2007, 2008, 2009, 2010, 2011, 2012, 2013);
+        Utils.addAllMapList(sectorList, ce.getBuildingsAndCommercial(), ce.getEletricityAndHeat(), ce.getIndustryAndConstruction(),
+                ce.getOtherSector(), ce.getTransport());
+        for (Integer y : yearList) {
+            Double valueSum = 0d;
+            valueSum = sumSectorsFromYear(sectorList, y);
+            if (valueSum <= 101 && valueSum >= 99) {
+                yearSet.add(y);
+            }
+        }
+        yearSetList.addAll(yearSet);
+        java.util.Collections.sort(yearSetList);
+        return yearSetList;
+    }
+
+    private static Double sumSectorsFromYear(List<Map<Integer, Double>> sectorList, int y) {
+        Double value = 0d;
+        for (Map<Integer, Double> map : sectorList) {
+            if (map.get(y) != null && !map.get(y).equals(0d)) {
+                value += map.get(y);
+            }
+        }
+        return value;
+    }
+
+    public static void setCbYearWithList(ChoiceBox cb, Integer year, List list) {
+        java.util.Collections.sort(list);
+        if (!list.isEmpty()) {
+            cb.getItems().removeAll(cb.getItems());
+            cb.getItems().addAll(list);
+            if (year != null) {
+                cb.setValue(list.contains(year) ? year : list.get(0));
+            } else {
+                cb.setValue(list.get(0));
+            }
+        } else {
+            cb.getItems().removeAll(cb.getItems());
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.si400.view;
 
-import com.si400.handler.MenuHandler1;
+import com.si400.handler.LeftMenuHandler1;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;

@@ -1,7 +1,6 @@
 package com.si400.model;
 
 import com.opencsv.CSVReader;
-import com.si400.util.Unzip;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,6 +22,11 @@ public class Emissions {
 
     public Emissions() {
         emissions = new HashMap<>();
+        try {
+            load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Map<String, CountryEmission> getEmissions() {

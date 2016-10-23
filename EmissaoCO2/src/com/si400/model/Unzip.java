@@ -1,4 +1,4 @@
-package com.si400.util;
+package com.si400.model;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

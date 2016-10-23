@@ -6,21 +6,27 @@ package com.si400.enums;
  */
 public enum SectorEnum {
 
-    ALLX("All"),
-    ETOT("Electricity and heat production"),
-    MANF("Industry and Construction"),
-    BLDG("Houses and public and commercials buildings"),
-    TRAN("Transport"),
-    OTHX("Other Sectors");
+    ALLX("All", "All"),
+    ETOT("Electricity and heat production", "Eletricity and heat"),
+    MANF("Industry and Construction", "Ind. and Construction"),
+    BLDG("Houses and public and commercials buildings", "Houses and Buildings"),
+    TRAN("Transport", "Transport"),
+    OTHX("Other Sectors", "Other Sectors");
     private String text;
+    private String shortText;
 
-    private SectorEnum(String t) {
+    private SectorEnum(String t, String st) {
         text = t;
+        shortText = st;
     }
 
     @Override
     public String toString() {
         return this.text;
+    }
+
+    public String ToShortString() {
+        return this.shortText;
     }
 
 }
