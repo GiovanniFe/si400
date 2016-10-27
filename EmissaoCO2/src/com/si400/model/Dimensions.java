@@ -9,8 +9,8 @@ public class Dimensions {
     private static final int W = 1150;
     private static final int H = 720;
     private static final int H_SIDE = (H / 25) * 22;
-    private static final int W_LEFT1 = 370;
-    private static final int W_LEFT2 = 275;
+    private static final int W_LEFT1 = 330;
+    private static final int W_LEFT2 = 230;
     private static final int W_RIGHT1 = W - W_LEFT1;
     private static final int W_RIGHT2 = W - W_LEFT2;
     private static final int BTN_W = ((W / 35) * 8) - 15;

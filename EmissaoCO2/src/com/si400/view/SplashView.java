@@ -39,7 +39,7 @@ public class SplashView extends Application {
         scene = new Scene(layout, 515, 307);
         window.setScene(scene);
         window.show();
-        PauseTransition delay = new PauseTransition(Duration.seconds(0));
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
         delay.setOnFinished(e -> {
             window.close();
             new MainView().display();
@@ -50,13 +50,13 @@ public class SplashView extends Application {
     private void setLabels() {
         label = new Label("Carbon Dioxide Emissions");
         label.setFont(new Font("Arial Black", 20));
-        label.setLayoutX(150);
+        label.setLayoutX(180);
         label.setLayoutY(180);
         label.setTextFill(new Color(1, 1, 1, 1));
 
         label1 = new Label("by Sector");
         label1.setFont(new Font("Arial Black", 18));
-        label1.setLayoutX(300);
+        label1.setLayoutX(368);
         label1.setLayoutY(215);
         label1.setTextFill(new Color(1, 1, 1, 1));
 
