@@ -7,7 +7,6 @@ import com.si400.model.Dimensions;
 import com.si400.model.Emissions;
 import com.si400.model.Utils;
 import com.si400.view.LeftMenuView2;
-import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Side;
@@ -40,18 +39,8 @@ public class LeftMenuHandler2 implements LeftMenuHandler {
     }
 
     private void setModels() {
-        setCountryModel();
+        country = Utils.setCountryModel(emissions, view);
         setYearModel();
-    }
-
-    private void setCountryModel() {
-        List<String> countryList = new ArrayList<>();
-        for (String key : emissions.getEmissions().keySet()) {
-            countryList.add(key);
-        }
-        java.util.Collections.sort(countryList);
-        view.getCbCountry().getItems().addAll(countryList);
-        view.getCbCountry().setValue(country = countryList.get(0));
     }
 
     private void setYearModel() {

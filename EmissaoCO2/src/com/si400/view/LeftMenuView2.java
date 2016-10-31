@@ -57,6 +57,7 @@ public class LeftMenuView2 implements LeftMenuView {
         return layoutLeft;
     }
 
+    @Override
     public ChoiceBox getCbCountry() {
         return cbCountry;
     }

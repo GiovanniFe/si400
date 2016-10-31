@@ -1,5 +1,6 @@
 package com.si400.abstracts;
 
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -9,4 +10,6 @@ import javafx.scene.layout.GridPane;
 public interface LeftMenuView {
 
     public GridPane getLayoutLeft();
+
+    public ChoiceBox getCbCountry();
 }

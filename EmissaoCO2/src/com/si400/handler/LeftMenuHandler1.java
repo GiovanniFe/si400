@@ -42,19 +42,9 @@ public class LeftMenuHandler1 implements LeftMenuHandler {
     }
 
     private void setModels() {
-        setCountryModel();
+        country = Utils.setCountryModel(emissions, view);
         setSectorModel();
         setYearModel();
-    }
-
-    private void setCountryModel() {
-        List<String> countryList = new ArrayList<>();
-        for (String key : emissions.getEmissions().keySet()) {
-            countryList.add(key);
-        }
-        java.util.Collections.sort(countryList);
-        view.getCbCountry().getItems().addAll(countryList);
-        view.getCbCountry().setValue(country = countryList.get(0));
     }
 
     private void setSectorModel() {
@@ -125,22 +115,22 @@ public class LeftMenuHandler1 implements LeftMenuHandler {
         PieChart chart = new PieChart();
         switch (sector) {
             case ALLX:
-                chart = LeftMenuHandler1.this.getPieChart(getValuesFromCe(emissions.getEmissions().get(country), year));
+                chart = getPieChartData(getValuesFromCe(emissions.getEmissions().get(country), year));
                 break;
             case BLDG:
-                chart = getPieChart(emissions.getEmissions().get(country).getBuildingsAndCommercial().get(year), SectorEnum.BLDG.toString());
+                chart = getPieChartData(emissions.getEmissions().get(country).getBuildingsAndCommercial().get(year), SectorEnum.BLDG.toString());
                 break;
             case ETOT:
-                chart = getPieChart(emissions.getEmissions().get(country).getEletricityAndHeat().get(year), SectorEnum.ETOT.toString());
+                chart = getPieChartData(emissions.getEmissions().get(country).getEletricityAndHeat().get(year), SectorEnum.ETOT.toString());
                 break;
             case MANF:
-                chart = getPieChart(emissions.getEmissions().get(country).getIndustryAndConstruction().get(year), SectorEnum.MANF.toString());
+                chart = getPieChartData(emissions.getEmissions().get(country).getIndustryAndConstruction().get(year), SectorEnum.MANF.toString());
                 break;
             case OTHX:
-                chart = getPieChart(emissions.getEmissions().get(country).getOtherSector().get(year), SectorEnum.OTHX.toString());
+                chart = getPieChartData(emissions.getEmissions().get(country).getOtherSector().get(year), SectorEnum.OTHX.toString());
                 break;
             case TRAN:
-                chart = getPieChart(emissions.getEmissions().get(country).getTransport().get(year), SectorEnum.TRAN.toString());
+                chart = getPieChartData(emissions.getEmissions().get(country).getTransport().get(year), SectorEnum.TRAN.toString());
         }
         layoutRight.getChildren().add(chart);
     }
@@ -155,14 +145,14 @@ public class LeftMenuHandler1 implements LeftMenuHandler {
         return mapNum;
     }
 
-    private PieChart getPieChart(Double value, String sector) {
+    private PieChart getPieChartData(Double value, String sector) {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data(sector + " " + Utils.formatDouble(value) + "% ", value),
                 new PieChart.Data("Remaining Sectors " + Utils.formatDouble(100 - value) + "% ", 100 - value));
         return setPieChart("Individual Sector", pieChartData);
     }
 
-    private PieChart getPieChart(Map<SectorEnum, Double> mapNum) {
+    private PieChart getPieChartData(Map<SectorEnum, Double> mapNum) {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data(SectorEnum.BLDG.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.BLDG)) + "% ", mapNum.get(SectorEnum.BLDG)),
                 new PieChart.Data(SectorEnum.ETOT.toString() + " " + Utils.formatDouble(mapNum.get(SectorEnum.ETOT)) + "% ", mapNum.get(SectorEnum.ETOT)),
@@ -176,7 +166,7 @@ public class LeftMenuHandler1 implements LeftMenuHandler {
         PieChart p = new PieChart(data);
         p.setMinHeight(Dimensions.getH_SIDE() - 20);
         p.setLabelsVisible(false);
-        p.setTitle("All Sectors");
+        p.setTitle(title);
         return p;
     }
 }

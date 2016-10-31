@@ -50,10 +50,10 @@ public class LeftMenuHandler3 implements LeftMenuHandler {
             countryList.add(key);
         }
         java.util.Collections.sort(countryList);
+        view.getCbCountry().getItems().addAll(countryList);
+        view.getCbCountry().setValue(country1 = countryList.get(0));
         view.getCbCountry1().getItems().addAll(countryList);
-        view.getCbCountry1().setValue(country1 = countryList.get(0));
-        view.getCbCountry2().getItems().addAll(countryList);
-        view.getCbCountry2().setValue(country2 = countryList.get(0));
+        view.getCbCountry1().setValue(country2 = countryList.get(0));
     }
 
     private void setYearModel() {
@@ -62,12 +62,12 @@ public class LeftMenuHandler3 implements LeftMenuHandler {
     }
 
     private void addEvents() {
-        view.getCbCountry1().getSelectionModel().selectedItemProperty().addListener((ObservableValue observable, Object oldValue, Object newValue) -> {
-            country1 = String.valueOf(view.getCbCountry1().getValue());
+        view.getCbCountry().getSelectionModel().selectedItemProperty().addListener((ObservableValue observable, Object oldValue, Object newValue) -> {
+            country1 = String.valueOf(view.getCbCountry().getValue());
             setYearModel();
         });
-        view.getCbCountry2().getSelectionModel().selectedItemProperty().addListener((ObservableValue observable, Object oldValue, Object newValue) -> {
-            country2 = String.valueOf(view.getCbCountry2().getValue());
+        view.getCbCountry1().getSelectionModel().selectedItemProperty().addListener((ObservableValue observable, Object oldValue, Object newValue) -> {
+            country2 = String.valueOf(view.getCbCountry1().getValue());
             setYearModel();
         });
 

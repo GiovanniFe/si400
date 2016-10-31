@@ -12,7 +12,7 @@ public class Unzip {
 
     private static final int BUFFER_SIZE = 4096;
 
-    public void unzip(String zipFilePath, String destDirectory) throws IOException {
+    public static void unzip(String zipFilePath, String destDirectory) throws IOException {
         File destDir = new File(destDirectory);
         if (!destDir.exists()) {
             destDir.mkdir();
@@ -33,7 +33,7 @@ public class Unzip {
         zipIn.close();
     }
 
-    private void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
+    private static void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
         byte[] bytesIn = new byte[BUFFER_SIZE];
         int read = 0;

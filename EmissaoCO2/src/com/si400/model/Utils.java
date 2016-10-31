@@ -1,5 +1,6 @@
 package com.si400.model;
 
+import com.si400.abstracts.LeftMenuView;
 import com.si400.enums.SectorEnum;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -198,5 +199,16 @@ public class Utils {
         } else {
             cb.getItems().removeAll(cb.getItems());
         }
+    }
+
+    public static String setCountryModel(Emissions emissions, LeftMenuView view) {
+        List<String> countryList = new ArrayList<>();
+        for (String key : emissions.getEmissions().keySet()) {
+            countryList.add(key);
+        }
+        java.util.Collections.sort(countryList);
+        view.getCbCountry().getItems().addAll(countryList);
+        view.getCbCountry().setValue(countryList.get(0));
+        return countryList.get(0);
     }
 }

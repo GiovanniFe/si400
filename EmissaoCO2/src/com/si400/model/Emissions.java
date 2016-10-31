@@ -33,10 +33,6 @@ public class Emissions {
         return emissions;
     }
 
-    public void setEmissions(Map<String, CountryEmission> emissions) {
-        this.emissions = emissions;
-    }
-
     public void load() throws IOException {
         BufferedInputStream in = null;
         FileOutputStream fout = null;
@@ -58,7 +54,7 @@ public class Emissions {
             }
         }
 
-        new Unzip().unzip(Strings.getZipPath(), Strings.getDirPath());
+        Unzip.unzip(Strings.getZipPath(), Strings.getDirPath());
 
         CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(new File(Strings.getCsvPath()))), ',');
         String[] row;

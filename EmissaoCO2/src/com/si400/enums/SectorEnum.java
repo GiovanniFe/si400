@@ -12,8 +12,8 @@ public enum SectorEnum {
     BLDG("Houses and public and commercials buildings", "Houses and Buildings"),
     TRAN("Transport", "Transport"),
     OTHX("Other Sectors", "Other Sectors");
-    private String text;
-    private String shortText;
+    private final String text;
+    private final String shortText;
 
     private SectorEnum(String t, String st) {
         text = t;

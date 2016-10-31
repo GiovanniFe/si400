@@ -1,6 +1,5 @@
 package com.si400.view;
 
-import com.si400.handler.LeftMenuHandler1;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -39,7 +38,7 @@ public class SplashView extends Application {
         scene = new Scene(layout, 515, 307);
         window.setScene(scene);
         window.show();
-        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        PauseTransition delay = new PauseTransition(Duration.seconds(2));
         delay.setOnFinished(e -> {
             window.close();
             new MainView().display();
@@ -56,7 +55,7 @@ public class SplashView extends Application {
 
         label1 = new Label("by Sector");
         label1.setFont(new Font("Arial Black", 18));
-        label1.setLayoutX(368);
+        label1.setLayoutX(340);
         label1.setLayoutY(215);
         label1.setTextFill(new Color(1, 1, 1, 1));
 

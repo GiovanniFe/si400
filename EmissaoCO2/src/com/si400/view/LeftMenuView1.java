@@ -73,6 +73,7 @@ public class LeftMenuView1 implements LeftMenuView {
         return lblYear;
     }
 
+    @Override
     public ChoiceBox getCbCountry() {
         return cbCountry;
     }
